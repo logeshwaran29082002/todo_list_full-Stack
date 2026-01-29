@@ -2,6 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+require("dotenv").config();
 
 // create an instance of an Express
 const app = express();
@@ -12,13 +13,10 @@ app.use(cors()); // Enable CORS for all routes
 
 // connect to MongoDB;
 mongoose
-  .connect("mongodb://localhost:27017/mern-app")
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("Error connecting to MongoDB:", err);
-  });
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("Error connecting to MongoDB:", err));
+
 
 // creating a schema for todo items
 const todoSchema = new mongoose.Schema({
