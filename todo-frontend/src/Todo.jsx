@@ -10,7 +10,7 @@ function Todo() {
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
 
-  const apiurl = "http://localhost:3000";
+ const apiurl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     getItems();
